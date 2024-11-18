@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet">
+    <title>Glass Blur Effect</title>
+    <style>
+        * {
+            /* margin: 0; */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            background: rgb(183, 183, 183, 0.4);
+            overflow: hidden;
+        }
+
+        .sliderContainer {
+            display: flex;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.3s ease;
+            /* overflow: hidden; */
+
+        }
+
+        .slide {
+            min-width: 100vw;
+            /* Each slide takes 1 viewport width */
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass {
+            width: 70%;
+            height: 80%;
+            backdrop-filter: blur(10px);
+            /* The blur effect */
+            background: rgb(183, 183, 183, 0.4);
+            /* Semi-transparent white */
+            border: 1px solid rgb(183, 183, 183, 0.4);
+            /* Border for glassy appearance */
+            border-radius: 40px;
+            /* Rounded corners */
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); */
+            /* Soft shadow */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .title {
+            font-family: "Dancing Script", cursive;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            color: rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title p {
+            margin: 0;
+        }
+
+        .title :first-child {
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        .title :last-child {
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+
+
+        .glass img {
+            width: 120%;
+            height: 60%;
+        }
+
+        .foodName {
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+
+        }
+
+        .foodName p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .foodDescription {
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            /* text-align: center; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .foodDescription p {
+            font-size: 0.8em;
+            width: 80%;
+        }
+
+        .bottomPart {
+            width: 80%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            /* flex-grow: 1 */
+            margin-left: 20%;
+            margin-right: 20%;
+            align-items: center;
+
+
+        }
+
+        .bottomPart img {
+            width: 25%;
+            height: 75%;
+        }
+
+        .price {
+            /* width: 50%; */
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            /* font-weight: 500; */
+            font-style: normal;
+            /* position: relative;
+            left: 10%; */
+        }
+
+        .price :first-child {
+            font-weight: 500;
+            font-size: 0.8em;
+        }
+
+        .price :last-child {
+            font-weight: 700;
+            font-size: 1em;
+        }
+
+        .demonstration {
+            /* width: 50%; */
+            display: flex;
+            align-items: center;
+            height: 60%;
+            border: 1px solid #000000;
+            border-radius: 15px;
+            justify-content: center;
+            background-color: #000000;
+            cursor: pointer;
+        }
+
+        .demonstration:hover {
+            border: 1px solid #f0f0f0;
+            background-color: #f0f0f0;
+        }
+
+        .demonstration:hover p {
+            color: #000000;
+        }
+
+
+        .demonstration p {
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 0.8em;
+            color: #f0f0f0;
+        }
+
+        .item {
+            flex: 1;
+            /* min-width: 0; */
+        }
+
+
+
+
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .prev,
+        .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .orderButton {
+            width: 120px;
+            height: 50px;
+            position: absolute;
+            top: 100%;
+            transform: translateY(-150%);
+            border: 1px solid black;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Comfortaa", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 0.8em;
+            color: #f0f0f0;
+        }
+
+        .logo {
+            top: 0;
+            width: 130px;
+            height: 130px;
+            position: absolute;
+            background-image: url("./images/logo.png");
+            z-index: 1000;
+            background-size: cover;
+            left: 50%;
+            transform: translate(-50%, -15%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo">
+    </div>
+    <div class="sliderContainer">
+
+        <div class="slider">
+            <div class="slide">
+                <div class="glass">
+                    <div class="title">
+                        <p>DAILY</p>
+                        <P>MENU</P>
+                    </div>
+                    <img src="./images/com-thit-kho-tau.png" />
+                    <div class="foodName">
+                        <p>Coconut-braised pork</p>
+                    </div>
+                    <div class="foodDescription">
+                        <p>Something about the food Something about the food Something about the food Something about
+                            the
+                            food
+                        </p>
+                    </div>
+                    <div class="bottomPart">
+                        <div class="price item">
+                            <p>Total Price</p>
+                            <p>$ 15.00</p>
+                        </div>
+                        <div class="demonstration item">
+                            <p>Recipe video</p>
+                            <img src="./images/youtube.png" />
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="orderButton">
+                    <p>ORDER NOW</p>
+                    <img />
+                </div> -->
+            </div>
+
+            <div class="slide">
+                <div class="glass">
+                    <div class="title">
+                        <p>DAILY</p>
+                        <P>MENU</P>
+                    </div>
+                    <img src="./images/bun-ca.png" />
+                    <div class="foodName">
+                        <p>Fish noodle soup</p>
+                    </div>
+                    <div class="foodDescription">
+                        <p>Something about the food Something about the food Something about the food Something about
+                            the
+                            food
+                        </p>
+                    </div>
+                    <div class="bottomPart">
+                        <div class="price item">
+                            <p>Total Price</p>
+                            <p>$ 15.00</p>
+                        </div>
+                        <div class="demonstration item">
+                            <p>Recipe video</p>
+                            <img src="./images/youtube.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="glass">
+                    <div class="title">
+                        <p>DAILY</p>
+                        <P>MENU</P>
+                    </div>
+                    <img src="./images/yogurt.png" />
+                    <div class="foodName">
+                        <p>Rice Yogurt</p>
+                    </div>
+                    <div class="foodDescription">
+                        <p>Something about the food Something about the food Something about the food Something about
+                            the
+                            food
+                        </p>
+                    </div>
+                    <div class="bottomPart">
+                        <div class="price item">
+                            <p>Total Price</p>
+                            <p>$ 15.00</p>
+                        </div>
+                        <div class="demonstration item">
+                            <p>Recipe video</p>
+                            <img src="./images/youtube.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="buttons">
+            <button class="prev">Prev</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

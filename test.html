@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Slide on Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            display: flex;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.3s ease;
+
+        }
+
+        .slide {
+            min-width: 100vw;
+            /* Each slide takes 1 viewport width */
+            height: 100vh;
+            /* Slide takes up the full height of the viewport */
+            background-color: #4CAF50;
+            /* Example background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .prev,
+        .next {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">Slide 1</div>
+            <div class="slide">Slide 2</div>
+            <div class="slide">Slide 3</div>
+        </div>
+        <div class="buttons">
+            <button class="prev">Prev</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelector('.slider');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+
+        function updateSlide() {
+            slides.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            currentSlide = (currentSlide === 0) ? totalSlides - 1 : currentSlide - 1;
+            updateSlide();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentSlide = (currentSlide === totalSlides - 1) ? 0 : currentSlide + 1;
+            updateSlide();
+        });
+
+        // Optional: Auto slide every 3 seconds
+        // setInterval(() => {
+        //     currentSlide = (currentSlide === totalSlides - 1) ? 0 : currentSlide + 1;
+        //     updateSlide();
+        // }, 3000);
+    </script>
+
+</body>
+
+</html>
