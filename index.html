@@ -256,12 +256,13 @@
             font-style: normal;
             font-size: 0.8em;
             color: #f0f0f0;
+            background-color: #000000;
         }
 
         .logo {
             top: 0;
-            width: 130px;
-            height: 130px;
+            width: 150px;
+            height: 150px;
             position: absolute;
             background-image: url("./images/logo.png");
             z-index: 1000;
@@ -269,12 +270,39 @@
             left: 50%;
             transform: translate(-50%, -15%);
         }
+
+        /* Messenger Button Styles */
+        .messenger-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0084FF;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .messenger-btn:hover {
+            background-color: #0063CC;
+        }
+
+        .messenger-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <!-- <div class="logo">
-    </div> -->
+    <div class="logo">
+    </div>
     <div class="sliderContainer">
 
         <div class="slider">
@@ -305,10 +333,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="orderButton">
+                <div class="orderButton">
                     <p>ORDER NOW</p>
                     <img />
-                </div> -->
+                </div>
             </div>
 
             <div class="slide">
@@ -338,6 +366,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="orderButton">
+                    <p>ORDER NOW</p>
+                    <img />
+                </div>
             </div>
             <div class="slide">
                 <div class="glass">
@@ -366,6 +398,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="orderButton">
+                    <p>ORDER NOW</p>
+                    <img />
+                </div>
             </div>
 
         </div>
@@ -373,7 +409,12 @@
             <button class="prev">Prev</button>
             <button class="next">Next</button>
         </div>
+
+
     </div>
+    <a href="https://m.me/HangxachtayUc.Ucviews/" target="_blank" class="messenger-btn">
+        <img src="./images/messenger.png" alt="Messenger Icon">
+    </a>
 
 
     <script src="./index.js"></script>
